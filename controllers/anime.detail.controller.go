@@ -80,13 +80,13 @@ func scrapAnimeDetail(link string) models.AnimeDetail {
 
 func RetrieveAnimeDetail(ctx *gin.Context) {
 	var body DetailBody
+
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
 	}
 
-	SendNotification()
 	ctx.JSON(http.StatusOK, gin.H{
 		"data": scrapAnimeDetail(body.Link),
 	})

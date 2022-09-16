@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"historm_api/models"
 	"log"
 	"net/http"
@@ -37,8 +38,10 @@ func scrapeVideo(link string) models.Video {
 
 	download, _ := doc.Find("div.anime_video_body_cate > div.favorites_book > ul > li.dowloads > a ").Attr("href")
 
+	fmt.Println(iframe)
+
 	return models.Video{
-		Iframe:   "https:" + iframe,
+		Iframe:   iframe,
 		Download: download,
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/base64"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -19,6 +20,8 @@ func Hash(secret string) string {
 func ApiMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var apiKey string = ctx.Request.Header.Get("x-api-key")
+
+		fmt.Println(apiKey)
 
 		if apiKey != Hash(os.Getenv("JWT_SECRET")) {
 			ctx.JSON(http.StatusUnauthorized,

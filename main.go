@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	fmt.Println(middlewares.Hash(os.Getenv("JWT_SECRET")))
 	godotenv.Load()
 	gin.SetMode(gin.ReleaseMode)
 

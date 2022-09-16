@@ -51,7 +51,9 @@ func RetrieveLatestAnimeList(ctx *gin.Context) {
 			"error": err.Error(),
 		})
 	}
+
 	SendNotification()
+
 	ctx.JSON(http.StatusOK, gin.H{
 		"data": scrapLatestAnimeList(body.Type, body.Page),
 	})
